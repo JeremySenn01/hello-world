@@ -47,16 +47,30 @@ public class ServiceQuizzes {
 	@Path("/edit")
 	@Consumes({ "application/json" })
 	@Produces({ "application/json" })
-	public Response updateQuestion(UpdatedQuiz quiz) {
+	public Response updateQuestion(UpdatedQuestion quiz) {
 
-		Optional<Quiz> foundQuiz = dao.updateQuiz(quiz);
-		// "not null"
-		if (foundQuiz.isPresent()) {
-			Quiz q = foundQuiz.get();
-			return Response.status(200).entity(q).build();
+//		Optional<Quiz> foundQuiz = dao.updateQuiz(quiz);
+//		// "not null"
+//		if (foundQuiz.isPresent()) {
+//
+//		}
+//		return Response.status(404).build();
+		return null;
+		
+	}
+	@POST
+	@Path("/add")
+	@Consumes({ "application/json" })
+	@Produces({ "application/json" })
+	public Response addQuestion(UpdatedQuestion quiz) {
 
-		}
-		return Response.status(404).build();
+//		Optional<Quiz> foundQuiz = dao.updateQuiz(quiz);
+//		// "not null"
+//		if (foundQuiz.isPresent()) {
+//
+//		}
+//		return Response.status(404).build();
+		return null;
 
 	}
 
@@ -75,10 +89,12 @@ public class ServiceQuizzes {
 
 	class UpdatedQuestion {
 
+		public int quizId;
+		public int questionId;
+		public int time;
 		public String title;
 		public String description;
 		public Map<String, Boolean> answers;
-		public int time;
 		
 	}
 

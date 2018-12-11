@@ -9,11 +9,6 @@ import java.util.Optional;
 import java.util.Random;
 
 import javax.inject.Singleton;
-import javax.sound.midi.Synthesizer;
-
-import org.wildfly.security.audit.SyslogAuditEndpoint;
-
-import ch.axa.ServiceQuizzes.UpdatedQuiz;
 
 //CDI Framework
 @Singleton
@@ -228,26 +223,6 @@ public class QuizDao {
 		return Optional.empty();
 	}
 
-	public Optional<Quiz> updateQuiz(UpdatedQuiz quiz) {
-		Optional<Quiz> foundQuiz = getQuizById(quiz.id);
-
-		if (foundQuiz.isPresent()) {
-
-			Quiz found = foundQuiz.get();
-
-			for (Quiz q : quizzes) {
-				if (q.getId() == quiz.id) {
-					quizzes.remove(q);
-					found.setTitle(quiz.title);
-					found.setDescription(quiz.description);
-					found.setQuestions(quiz.questions);
-					quizzes.add(found);
-				}
-			}
-			return Optional.of(found);
-		}
-		return Optional.empty();
-	}
 
 	public Optional<Question> deleteQuestion(int quizId, int questionId) {
 		Optional<Quiz> foundQuiz = getQuizById(quizId);
